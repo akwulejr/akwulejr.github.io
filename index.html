@@ -290,7 +290,8 @@
       <div class="audit-form">
         <input type="text" id="audit-name" placeholder="First name" autocomplete="given-name">
         <input type="email" id="audit-email" placeholder="Email address" autocomplete="email">
-        <button type="button" onclick="window.location.href='AUDIT_FORM_LINK'">Send me the audit</button>
+        <!-- AUDIT BUTTON: currently emails you a request. When your audit form is ready, replace the whole href below with: onclick="window.location.href='YOUR_FORM_LINK'" -->
+        <button type="button" onclick="window.location.href='mailto:info@hphealthspan.com?subject=Home%20Health%20Audit%20request&body=Please%20send%20me%20the%20Home%20Health%20Audit.%20My%20name%20is%3A%20'">Send me the audit</button>
         <div class="note">No pitch. If it is useful, useful. If not, no harm done.</div>
       </div>
     </div>
@@ -349,11 +350,9 @@
     <div class="sec-eyebrow reveal" style="color:#9db5a8;">Next step</div>
     <h2 class="reveal">Book a 30-minute Healthspan Reset call.</h2>
     <p class="reveal">We map your starting point and define the five markers that matter for you. No pitch. A direct read on whether this is a fit.</p>
-    <a href="CALENDLY_LINK" class="btn-primary reveal">Book your call</a>
-    <!-- Calendly inline embed. Replace data-url with your real Calendly link to activate. -->
-    <div class="calendly-wrap reveal">
-      <div class="calendly-inline-widget" data-url="CALENDLY_LINK" style="min-width:320px;height:680px;"></div>
-    </div>
+    <!-- BOOKING BUTTON: currently emails you to arrange a call. When Calendly is ready, replace the href below with your Calendly URL, e.g. href="https://calendly.com/your-name/healthspan-reset-call" -->
+    <a href="mailto:info@hphealthspan.com?subject=Healthspan%20Reset%20call&body=I%27d%20like%20to%20book%20a%20Healthspan%20Reset%20call.%20My%20name%20is%3A%20" class="btn-primary reveal">Book your call</a>
+    <!-- CALENDLY EMBED: removed for now. When ready, paste your Calendly inline widget here. -->
   </div>
 </section>
 
@@ -368,7 +367,6 @@
   </div>
 </footer>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
   // Staggered reveal on scroll
   const obs = new IntersectionObserver((entries) => {
