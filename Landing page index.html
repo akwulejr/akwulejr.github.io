@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Performance Healthspan</title>
+<meta name="description" content="A 12-week 1-to-1 performance protocol for founders and senior operators. Measurable improvements in energy, sleep, body composition, and cognitive performance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #0F3528;
+    --forest-soft: #1a4a37;
+    --slate-border: #3E5C76;
+    --slate-fill: #F1F4F6;
+    --off-white: #FAFAF6;
+    --ink: #1d2521;
+    --muted: #5a6b62;
+    --line: #e2e6e1;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--off-white);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+  }
+
+  h1, h2, h3, .display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .narrow { max-width: 720px; }
+
+  /* Top bar */
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250,250,246,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo {
+    font-family: var(--sans); font-weight: 600; font-size: 13px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest);
+    text-decoration: none; line-height: 1.3;
+  }
+  .bar-cta {
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    color: var(--off-white); background: var(--forest);
+    padding: 10px 20px; border-radius: 6px; text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .bar-cta:hover { background: var(--forest-soft); }
+
+  /* Hero */
+  .hero { padding: 96px 0 72px; }
+  .eyebrow {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate-border);
+    margin-bottom: 28px;
+  }
+  .hero h1 { font-size: 58px; line-height: 1.06; color: var(--forest); max-width: 760px; }
+  .hero .lede {
+    font-size: 20px; color: var(--muted); margin-top: 28px; max-width: 600px;
+  }
+  .hero-actions { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-family: var(--sans); font-size: 16px; font-weight: 500;
+    color: var(--off-white); background: var(--forest);
+    padding: 15px 30px; border-radius: 7px; text-decoration: none;
+    transition: transform 0.15s ease, background 0.2s ease;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--forest-soft); transform: translateY(-1px); }
+  .btn-secondary {
+    font-family: var(--sans); font-size: 16px; font-weight: 500;
+    color: var(--forest); background: transparent;
+    padding: 15px 30px; border-radius: 7px; text-decoration: none;
+    border: 1px solid var(--slate-border);
+    transition: background 0.2s ease;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--slate-fill); }
+
+  /* Section rhythm */
+  section { padding: 80px 0; }
+  .sec-eyebrow {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate-border);
+    margin-bottom: 18px;
+  }
+  h2 { font-size: 38px; line-height: 1.15; color: var(--forest); max-width: 640px; }
+  .sec-lede { font-size: 19px; color: var(--muted); margin-top: 20px; max-width: 620px; }
+
+  /* The problem band */
+  .band { background: var(--forest); color: var(--off-white); }
+  .band h2 { color: var(--off-white); }
+  .band .sec-eyebrow { color: #9db5a8; }
+  .band p { color: #c4d2cb; font-size: 19px; max-width: 640px; margin-top: 20px; }
+
+  /* Markers grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 48px; }
+  .cell { background: var(--off-white); padding: 32px 28px; }
+  .cell .num { font-family: var(--serif); font-size: 14px; color: var(--slate-border); display: block; margin-bottom: 12px; }
+  .cell h3 { font-size: 21px; color: var(--forest); margin-bottom: 8px; }
+  .cell p { font-size: 15px; color: var(--muted); }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 36px; margin-top: 48px; }
+  .step .step-n { font-family: var(--serif); font-size: 40px; color: var(--slate-border); line-height: 1; }
+  .step h3 { font-size: 22px; color: var(--forest); margin: 16px 0 8px; }
+  .step p { font-size: 16px; color: var(--muted); }
+
+  /* Proof */
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
+  .quote {
+    background: var(--slate-fill);
+    border-left: 4px solid var(--slate-border);
+    padding: 28px 30px; border-radius: 4px;
+  }
+  .quote p { font-family: var(--serif); font-size: 19px; color: var(--ink); line-height: 1.5; }
+  .quote .who { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--forest); margin-top: 18px; }
+
+  /* Audit feature box */
+  .audit-box {
+    background: var(--slate-fill);
+    border-left: 4px solid var(--slate-border);
+    border-radius: 6px;
+    padding: 48px;
+    margin-top: 40px;
+    display: flex; gap: 48px; align-items: center; flex-wrap: wrap;
+  }
+  .audit-box .copy { flex: 1; min-width: 280px; }
+  .audit-box h3 { font-size: 28px; color: var(--forest); margin-bottom: 14px; }
+  .audit-box p { color: var(--muted); font-size: 17px; }
+  .audit-form { flex: 1; min-width: 280px; }
+  .audit-form input {
+    width: 100%; font-family: var(--sans); font-size: 16px;
+    padding: 14px 16px; border: 1px solid var(--slate-border);
+    border-radius: 6px; margin-bottom: 12px; background: var(--off-white);
+    color: var(--ink);
+  }
+  .audit-form input:focus { outline: 2px solid var(--forest); outline-offset: -1px; }
+  .audit-form button {
+    width: 100%; font-family: var(--sans); font-size: 16px; font-weight: 500;
+    color: var(--off-white); background: var(--forest); border: none;
+    padding: 15px; border-radius: 6px; cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .audit-form button:hover { background: var(--forest-soft); }
+  .audit-form .note { font-size: 13px; color: var(--muted); margin-top: 10px; text-align: center; }
+
+  /* Tiers */
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
+  .tier { border: 1px solid var(--line); border-radius: 10px; padding: 36px 30px; background: var(--off-white); }
+  .tier.featured { border: 2px solid var(--forest); position: relative; }
+  .tier.featured .tag {
+    position: absolute; top: -12px; left: 30px;
+    background: var(--forest); color: var(--off-white);
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 4px;
+  }
+  .tier .tier-name { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate-border); }
+  .tier .price { font-family: var(--serif); font-size: 40px; color: var(--forest); margin: 14px 0 4px; }
+  .tier .terms { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .tier ul { list-style: none; }
+  .tier li { font-size: 15px; color: var(--ink); padding: 8px 0 8px 24px; position: relative; border-top: 1px solid var(--line); }
+  .tier li:first-child { border-top: none; }
+  .tier li::before { content: ""; position: absolute; left: 0; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: var(--slate-border); }
+
+  /* Final CTA */
+  .final { background: var(--forest); color: var(--off-white); text-align: center; }
+  .final h2 { color: var(--off-white); margin: 0 auto; }
+  .final p { color: #c4d2cb; font-size: 19px; margin: 20px auto 36px; max-width: 520px; }
+  .final .btn-primary { background: var(--off-white); color: var(--forest); }
+  .final .btn-primary:hover { background: #fff; }
+  .calendly-wrap { margin-top: 48px; background: var(--off-white); border-radius: 10px; min-height: 680px; }
+
+  /* Footer */
+  footer { padding: 48px 0; border-top: 1px solid var(--line); }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .foot-inner .tagline { font-family: var(--serif); font-size: 17px; color: var(--forest); }
+  .foot-inner .links { font-size: 14px; color: var(--muted); }
+  .foot-inner a { color: var(--muted); text-decoration: none; }
+  .foot-inner a:hover { color: var(--forest); }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+    .hero { padding: 64px 0 48px; }
+    .hero h1 { font-size: 40px; }
+    h2 { font-size: 30px; }
+    section { padding: 56px 0; }
+    .audit-box { padding: 32px; gap: 32px; }
+    .bar-cta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-inner">
+    <a href="#top" class="logo">Human Performance<br>Healthspan</a>
+    <a href="#audit" class="bar-cta">Get the Home Health Audit</a>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">Performance today. Healthspan for life.</div>
+    <h1 class="reveal">The full performance stack, run by one operator.</h1>
+    <p class="lede reveal">A 12-week 1-to-1 protocol for founders and senior operators who want measurable improvements in energy, sleep, body composition, and cognitive performance.</p>
+    <div class="hero-actions reveal">
+      <a href="#audit" class="btn-primary">Start with the free audit</a>
+      <a href="#call" class="btn-secondary">Book a Reset call</a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap narrow">
+    <div class="sec-eyebrow reveal">The opportunity</div>
+    <h2 class="reveal">At your level, the bottleneck is rarely effort. It is coordination.</h2>
+    <p class="reveal">Sleep, training, nutrition, recovery, environment, and cognition are usually managed by different specialists, different apps, or no one at all. Each input is treated in isolation. The result is incremental gains that fade and protocols that never compound. No single party runs the full stack with accountability for the result.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">What we track</div>
+    <h2 class="reveal">Five markers. Agreed in week one. Retested in week twelve.</h2>
+    <div class="grid reveal">
+      <div class="cell"><span class="num">01</span><h3>Sleep efficiency</h3><p>Time asleep against time in bed, measured by your wearable.</p></div>
+      <div class="cell"><span class="num">02</span><h3>Resting heart rate</h3><p>The lowest sustained overnight value, tracked as a weekly average.</p></div>
+      <div class="cell"><span class="num">03</span><h3>Body composition</h3><p>Lean mass, fat mass, or waist measure, depending on your tier.</p></div>
+      <div class="cell"><span class="num">04</span><h3>Daytime energy</h3><p>A subjective score logged twice daily across the engagement.</p></div>
+      <div class="cell"><span class="num">05</span><h3>Performance marker</h3><p>Grip, a VO2 estimate, a key lift, or a blood marker. Agreed in week one.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">How it runs</div>
+    <h2 class="reveal">Three phases. One operator. Quantified throughout.</h2>
+    <div class="steps">
+      <div class="step reveal"><div class="step-n">01</div><h3>Diagnose</h3><p>A 90-minute kickoff, intake, wearable baseline, and home environment audit. Markers agreed and your protocol delivered within five working days.</p></div>
+      <div class="step reveal"><div class="step-n">02</div><h3>Execute</h3><p>Weekly 30-minute calls, daily messaging support, written reviews, and ongoing protocol adjustments across weeks 2 to 11.</p></div>
+      <div class="step reveal"><div class="step-n">03</div><h3>Retest</h3><p>Markers retested against baseline, a written summary, and a four-week maintenance plan to lock in the gains.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Proof</div>
+    <h2 class="reveal">What founders say after working through it.</h2>
+    <div class="quotes">
+      <div class="quote reveal"><p>Best week of sleep I have had in years, and it happened inside the first fortnight.</p><div class="who">Kenny O.</div></div>
+      <div class="quote reveal"><p>One person finally owned the whole picture instead of handing me another isolated plan.</p><div class="who">Sasha M.</div></div>
+      <div class="quote reveal"><p>Energy through the afternoon stopped collapsing. That alone changed how I run my days.</p><div class="who">Chris E.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="audit">
+  <div class="wrap">
+    <div class="audit-box reveal">
+      <div class="copy">
+        <div class="sec-eyebrow">Start here</div>
+        <h3>The Home Health Audit</h3>
+        <p>I have put together a short Home Health Audit for founders and senior operators who want to see where their environment may be quietly undermining sleep, recovery and focus. Five categories, twenty-five checkpoints, a clear scoring system. Most people find one or two changes that meaningfully improve sleep within a week.</p>
+      </div>
+      <div class="audit-form">
+        <input type="text" id="audit-name" placeholder="First name" autocomplete="given-name">
+        <input type="email" id="audit-email" placeholder="Email address" autocomplete="email">
+        <button type="button" onclick="window.location.href='AUDIT_FORM_LINK'">Send me the audit</button>
+        <div class="note">No pitch. If it is useful, useful. If not, no harm done.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Investment</div>
+    <h2 class="reveal">Three engagement tiers.</h2>
+    <p class="sec-lede reveal">Most clients select Core. Starter suits those not yet ready for 1-to-1 work. Premium adds in-person sessions and biomarker testing.</p>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tier-name">Starter</div>
+        <div class="price">&pound;4,500</div>
+        <div class="terms">8 weeks, group of five</div>
+        <ul>
+          <li>One group call per week</li>
+          <li>Shared protocol</li>
+          <li>Group review at week 8</li>
+          <li>Self-directed home audit</li>
+        </ul>
+      </div>
+      <div class="tier featured reveal">
+        <div class="tag">Most chosen</div>
+        <div class="tier-name">Core</div>
+        <div class="price">&pound;12,000</div>
+        <div class="terms">12 weeks, fully 1-to-1</div>
+        <ul>
+          <li>Weekly call plus daily support</li>
+          <li>Personalised protocol</li>
+          <li>Weekly written review and week 12 retest</li>
+          <li>Full home environment audit</li>
+          <li>Performance guarantee included</li>
+        </ul>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-name">Premium</div>
+        <div class="price">&pound;25,000</div>
+        <div class="terms">12 weeks, in-person</div>
+        <ul>
+          <li>Weekly call plus daily support</li>
+          <li>Personalised protocol plus biomarker panel</li>
+          <li>Weekly written review and week 12 retest</li>
+          <li>Monthly in-person session in London</li>
+          <li>Performance guarantee included</li>
+        </ul>
+      </div>
+    </div>
+    <p class="sec-lede reveal" style="margin-top:36px;font-size:16px;"><strong>Performance guarantee.</strong> If, after 12 weeks, fewer than three of your five agreed markers have improved, the engagement continues at no additional cost until they do. Applies to Core and Premium.</p>
+  </div>
+</section>
+
+<section class="final" id="call">
+  <div class="wrap narrow">
+    <div class="sec-eyebrow reveal" style="color:#9db5a8;">Next step</div>
+    <h2 class="reveal">Book a 30-minute Healthspan Reset call.</h2>
+    <p class="reveal">We map your starting point and define the five markers that matter for you. No pitch. A direct read on whether this is a fit.</p>
+    <a href="CALENDLY_LINK" class="btn-primary reveal">Book your call</a>
+    <!-- Calendly inline embed. Replace data-url with your real Calendly link to activate. -->
+    <div class="calendly-wrap reveal">
+      <div class="calendly-inline-widget" data-url="CALENDLY_LINK" style="min-width:320px;height:680px;"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="tagline">Performance today. Healthspan for life.</div>
+    <div class="links">
+      <a href="mailto:info@hphealthspan.com">info@hphealthspan.com</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://www.linkedin.com/in/juniorakwule" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+  // Staggered reveal on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
