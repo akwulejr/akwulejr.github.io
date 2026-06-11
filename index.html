@@ -160,6 +160,43 @@
   .audit-form button:hover { background: var(--forest-soft); }
   .audit-form .note { font-size: 13px; color: var(--muted); margin-top: 10px; text-align: center; }
 
+  /* Self-guided product band */
+  .product {
+    display: flex; gap: 56px; align-items: center; flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .product .copy { flex: 1.2; min-width: 300px; }
+  .product .panel {
+    flex: 1; min-width: 280px;
+    background: var(--off-white);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(15,53,40,0.04);
+  }
+  .product .panel .tier-name { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate-border); }
+  .product .panel .price { font-family: var(--serif); font-size: 46px; color: var(--forest); margin: 12px 0 2px; }
+  .product .panel .price small { font-family: var(--sans); font-size: 15px; color: var(--muted); font-weight: 400; }
+  .product .panel .terms { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .product .panel ul { list-style: none; margin-bottom: 28px; }
+  .product .panel li { font-size: 15px; color: var(--ink); padding: 9px 0 9px 26px; position: relative; }
+  .product .panel li::before { content: ""; position: absolute; left: 0; top: 17px; width: 8px; height: 8px; border-radius: 50%; background: var(--slate-border); }
+  .product .panel .btn-primary { width: 100%; text-align: center; }
+  .credit-note {
+    background: var(--slate-fill); border-radius: 8px;
+    padding: 16px 20px; margin-top: 18px;
+    font-size: 14px; color: var(--forest); line-height: 1.5;
+  }
+  .credit-note strong { font-weight: 600; }
+
+  /* Three ways to work */
+  .ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 48px; }
+  .way { background: var(--off-white); padding: 32px 28px; position: relative; }
+  .way .way-step { font-family: var(--serif); font-size: 14px; color: var(--slate-border); display: block; margin-bottom: 12px; }
+  .way h3 { font-size: 22px; color: var(--forest); margin-bottom: 6px; }
+  .way .way-price { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--slate-border); margin-bottom: 10px; }
+  .way p { font-size: 15px; color: var(--muted); }
+
   /* Tiers */
   .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
   .tier { border: 1px solid var(--line); border-radius: 10px; padding: 36px 30px; background: var(--off-white); }
@@ -225,10 +262,10 @@
   <div class="wrap">
     <div class="eyebrow reveal">Performance today. Healthspan for life.</div>
     <h1 class="reveal">The full performance stack, run by one operator.</h1>
-    <p class="lede reveal">A 12-week 1-to-1 protocol for founders and senior operators who want measurable improvements in energy, sleep, body composition, and cognitive performance.</p>
+    <p class="lede reveal">A free environment audit. A self-guided digital download. A fully 1-to-1 protocol run by one operator. Built for founders and senior operators who want measurable gains in energy, sleep, body composition, and cognitive performance.</p>
     <div class="hero-actions reveal">
       <a href="#audit" class="btn-primary">Start with the free audit</a>
-      <a href="#call" class="btn-secondary">Book a Reset call</a>
+      <a href="#self-guided" class="btn-secondary">Explore the self-guided reset</a>
     </div>
   </div>
 </section>
@@ -298,11 +335,65 @@
   </div>
 </section>
 
+<section id="self-guided" class="band">
+  <div class="wrap">
+    <div class="product">
+      <div class="copy">
+        <div class="sec-eyebrow reveal">Digital download</div>
+        <h2 class="reveal">The Self-Guided Reset.</h2>
+        <p class="reveal">A complete digital product, delivered instantly. You receive the course manual, a fillable workbook and 12-week tracker, and a quick-start guide as direct downloads the moment you purchase. No calls, no coach, no scheduling. You run the protocol yourself, on your own terms.</p>
+        <p class="reveal" style="margin-top:18px;">This is not the 1-to-1 programme. It is the system behind it, in your hands, for a fraction of the price. If you later want an operator running it for you, the full &pound;499 is credited toward any 1-to-1 tier.</p>
+      </div>
+      <div class="panel reveal">
+        <div class="tier-name">The Healthspan OS: Self-Guided Reset</div>
+        <div class="price">&pound;499</div>
+        <div class="terms">Instant download. Yours to keep.</div>
+        <ul>
+          <li>Course manual covering all six domains</li>
+          <li>Fillable workbook and 12-week tracker</li>
+          <li>Quick-start guide for your first 48 hours</li>
+          <li>Delivered immediately after purchase</li>
+        </ul>
+        <!-- SELF-GUIDED BUY BUTTON: Payhip checkout -->
+        <a href="https://payhip.com/b/WrEbe" class="btn-primary" target="_blank" rel="noopener">Download the Self-Guided Reset</a>
+        <div class="credit-note"><strong>Upgrade credit.</strong> The full &pound;499 is credited toward any 1-to-1 tier if you later move up. You lose nothing by starting here.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Three ways to work</div>
+    <h2 class="reveal">Two products. One free starting point. Know which is which.</h2>
+    <div class="ways reveal">
+      <div class="way">
+        <span class="way-step">Free</span>
+        <h3>Home Health Audit</h3>
+        <div class="way-price">A scored PDF checklist</div>
+        <p>A 25-checkpoint review of the environment shaping your sleep, recovery and focus. Score yourself, find one or two changes worth making this week. No purchase, no programme.</p>
+      </div>
+      <div class="way">
+        <span class="way-step">Do it yourself</span>
+        <h3>The Self-Guided Reset</h3>
+        <div class="way-price">&pound;499, instant digital download</div>
+        <p>The complete system as a set of documents you download and run on your own. No operator, no calls, no support. The &pound;499 is fully credited if you upgrade to 1-to-1.</p>
+      </div>
+      <div class="way">
+        <span class="way-step">Done with you</span>
+        <h3>The Healthspan Reset</h3>
+        <div class="way-price">From &pound;4,500, live 1-to-1 engagement</div>
+        <p>An operator runs the full stack with you. Weekly calls, daily support, written reviews, five markers retested at week twelve, performance guarantee on Core and Premium.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section style="padding-top:0;">
   <div class="wrap">
-    <div class="sec-eyebrow reveal">Investment</div>
-    <h2 class="reveal">Three engagement tiers.</h2>
-    <p class="sec-lede reveal">Most clients select Core. Starter suits those not yet ready for 1-to-1 work. Premium adds in-person sessions and biomarker testing.</p>
+    <div class="sec-eyebrow reveal">The 1-to-1 engagement</div>
+    <h2 class="reveal">The Healthspan Reset. Three tiers.</h2>
+    <p class="sec-lede reveal">This is the live, operator-led programme, separate from the digital download above. Most clients select Core. Starter suits those not yet ready for 1-to-1 work. Premium adds in-person sessions and biomarker testing.</p>
     <div class="tiers">
       <div class="tier reveal">
         <div class="tier-name">Starter</div>
