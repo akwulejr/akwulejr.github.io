@@ -290,6 +290,11 @@
   .ext-card li::before { content: ""; position: absolute; left: 0; top: 18px; width: 7px; height: 7px; border-radius: 50%; background: var(--sage); }
   @media (max-width: 920px) { .ext { grid-template-columns: 1fr; } }
 
+  /* ---------- Premium positioning note ---------- */
+  .prem-note { margin-top: 20px; border-left: 3px solid var(--forest); background: var(--paper); border-radius: 0 14px 14px 0; padding: 26px 30px; }
+  .prem-note .pn-label { font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; }
+  .prem-note p { font-family: var(--display); font-size: clamp(1.05rem, 1.5vw, 1.22rem); color: var(--forest); line-height: 1.55; max-width: 78ch; }
+
   /* ---------- Guarantee ---------- */
   .guarantee { margin-top: 38px; background: var(--cool); border: 1px solid var(--line); border-radius: 18px; padding: clamp(28px,3.5vw,40px); display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: center; }
   .guarantee .g-mark { width: 46px; height: 46px; flex: none; }
@@ -330,6 +335,57 @@
   /* ---------- Reveal ---------- */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
   .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ---------- Impact layer ---------- */
+  /* Stat band under the hero */
+  .stat-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--paper); }
+  .stat-band .wrap { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .stat { padding: 34px 18px; text-align: center; border-left: 1px solid var(--line); }
+  .stat:first-child { border-left: none; }
+  .stat .s-num { font-family: var(--display); font-size: clamp(1.9rem, 3.2vw, 2.7rem); color: var(--forest); letter-spacing: -0.02em; line-height: 1; }
+  .stat .s-cap { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+  @media (max-width: 920px) {
+    .stat-band .wrap { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-left: none; border-top: 1px solid var(--line); }
+    .stat:first-child, .stat:nth-child(2) { border-top: none; }
+    .stat:last-child { grid-column: 1 / -1; border-top: 1px solid var(--line); }
+  }
+
+  /* Ghost numerals on section openers */
+  .numbered { position: relative; }
+  .numbered .ghost {
+    position: absolute; top: -0.18em; right: -0.04em;
+    font-family: var(--display); font-size: clamp(7rem, 16vw, 13rem); line-height: 1;
+    color: var(--forest); opacity: 0.055; pointer-events: none; user-select: none; z-index: 0;
+  }
+  .band .ghost, .final .ghost { color: var(--off-white); opacity: 0.06; }
+  .numbered > *:not(.ghost) { position: relative; z-index: 1; }
+
+  /* Fine grain on dark bands so they read rich, not flat */
+  .band::after, .final::after, .feature-quote::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Slate keyline accents on light section eyebrows */
+  .eyebrow::before { content: ""; display: inline-block; width: 26px; height: 2px; background: var(--slate); margin-right: 12px; vertical-align: 4px; }
+  .band .eyebrow::before, .final .eyebrow::before { background: var(--sage); }
+
+  /* Marker cells: numeral emphasis on dark band */
+  .cell .num { font-size: 15px; letter-spacing: 0.06em; }
+
+  /* Timeline: connected spine */
+  .timeline { position: relative; }
+  .tl-row { position: relative; }
+  .tl-row::before { content: ""; position: absolute; left: -22px; top: 38px; width: 8px; height: 8px; border-radius: 50%; background: var(--slate); }
+  @media (min-width: 761px) {
+    .timeline { padding-left: 22px; }
+    .timeline::before { content: ""; position: absolute; left: -18px; top: 20px; bottom: 20px; width: 1.5px; background: linear-gradient(to bottom, var(--line-strong), var(--mist), var(--line-strong)); }
+  }
+  @media (max-width: 760px) { .tl-row::before { display: none; } }
+
+  /* Featured quote: oversized serif open-quote */
+  .feature-quote blockquote::before { content: "\201C"; display: block; font-family: var(--display); font-size: 4.6rem; line-height: 0.6; color: var(--sage); opacity: .8; margin-bottom: 18px; }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 920px) {
@@ -425,6 +481,17 @@
   </div>
 </section>
 
+<!-- ============ STAT BAND ============ -->
+<div class="stat-band" aria-label="The engagement at a glance">
+  <div class="wrap">
+    <div class="stat reveal"><div class="s-num">6</div><div class="s-cap">Domains, one system</div></div>
+    <div class="stat reveal"><div class="s-num">12</div><div class="s-cap">Weeks, one operator</div></div>
+    <div class="stat reveal"><div class="s-num">5</div><div class="s-cap">Markers, retested</div></div>
+    <div class="stat reveal"><div class="s-num">1:1</div><div class="s-cap">Never outsourced</div></div>
+    <div class="stat reveal"><div class="s-num">3/5</div><div class="s-cap">Improve, or we continue free</div></div>
+  </div>
+</div>
+
 <!-- ============ OPPORTUNITY ============ -->
 <section class="band">
   <div class="wrap narrow">
@@ -436,7 +503,8 @@
 
 <!-- ============ METHOD / SYSTEM DIAGRAM ============ -->
 <section id="method">
-  <div class="wrap">
+  <div class="wrap numbered">
+    <div class="ghost" aria-hidden="true">01</div>
     <div class="eyebrow reveal">The method</div>
     <h2 class="reveal">Six domains. One operator. One system.</h2>
     <p class="sec-lede reveal">Most performance advice treats each input on its own. We run all six domains as one operating system, adjusted every week against your data, so the gains hold instead of fading.</p>
@@ -509,7 +577,8 @@
 
 <!-- ============ MARKERS ============ -->
 <section class="band">
-  <div class="wrap">
+  <div class="wrap numbered">
+    <div class="ghost" aria-hidden="true">02</div>
     <div class="eyebrow reveal">What we measure</div>
     <h2 class="reveal">Five markers. Agreed in week one. Retested in week twelve.</h2>
     <p class="reveal">No vague promises. Every engagement is held to five markers you agree at the start and see retested at the end. That is what turns a programme into accountability.</p>
@@ -525,7 +594,8 @@
 
 <!-- ============ TIMELINE ============ -->
 <section id="inside">
-  <div class="wrap">
+  <div class="wrap numbered">
+    <div class="ghost" aria-hidden="true">03</div>
     <div class="eyebrow reveal">Inside the engagement</div>
     <h2 class="reveal">What actually happens, week by week.</h2>
     <p class="sec-lede reveal">If you choose Core, here is the shape of the twelve weeks. One operator, the same person throughout, quantified at every step.</p>
@@ -599,7 +669,8 @@
 
 <!-- ============ THE OPERATOR ============ -->
 <section id="operator">
-  <div class="wrap">
+  <div class="wrap numbered">
+    <div class="ghost" aria-hidden="true">04</div>
     <div class="operator">
       <!-- Founder photograph, embedded. To change it later, replace the src data URI or point it at an image file. -->
       <figure class="portrait reveal">
@@ -702,7 +773,8 @@
 
 <!-- ============ PROGRAMME / TIERS ============ -->
 <section id="programme" style="padding-top:0;">
-  <div class="wrap">
+  <div class="wrap numbered">
+    <div class="ghost" aria-hidden="true">05</div>
     <div class="eyebrow reveal">The 1-to-1 engagement</div>
     <h2 class="reveal">The Healthspan Reset. Three tiers.</h2>
     <p class="sec-lede reveal">This is the live, operator-led programme, separate from the digital download above. Most clients select Core. Starter suits those not yet ready for 1-to-1 work. Premium adds in-person sessions and biomarker testing. If none of the tiers fits your situation or your household, the two engagements below are scoped and priced individually.</p>
@@ -734,15 +806,22 @@
       <div class="tier reveal">
         <div class="tier-name">Premium</div>
         <div class="price">&pound;25,000</div>
-        <div class="terms">12 weeks, in-person</div>
+        <div class="terms">12 weeks, weekly sessions in person or by video</div>
         <ul>
-          <li>Weekly call plus daily support</li>
-          <li>Personalised protocol plus biomarker panel</li>
-          <li>Weekly written review and week 12 retest</li>
-          <li>Monthly in-person session in London</li>
+          <li>Everything in Core, then a different level of access</li>
+          <li>Weekly session held face to face, in person in London or by video, at your preference</li>
+          <li>In-person cadence shaped around your calendar</li>
+          <li>Biomarker panel at baseline and retest, informing the protocol</li>
+          <li>Priority access, same-day response</li>
+          <li>Bespoke progress dossier, a board-pack quality record of the engagement</li>
           <li>Performance guarantee included</li>
         </ul>
       </div>
+    </div>
+
+    <div class="prem-note reveal">
+      <div class="pn-label">Core or Premium</div>
+      <p>Core is the complete programme, and for most clients it is the right choice. Premium is not more programme, it is a different level of access: your weekly session held face to face, in person or on video as suits you, your protocol shaped by blood data rather than wearable data alone, same-day priority when the week goes sideways, and a dossier you could hand to your board. If you are choosing between them on price, choose Core.</p>
     </div>
 
     <div class="ext">
@@ -763,10 +842,11 @@
         <div class="tier-name">Bespoke</div>
         <div class="price">By application</div>
         <div class="terms">Scope, duration and investment built around you</div>
-        <p class="blurb">For anyone whose circumstances do not fit a standard tier. The engagement is designed from a private consultation, whether that means a leaner focused programme built around one or two domains, or a fully extended one covering travel, residences and household. The investment follows the scope.</p>
+        <p class="blurb">For anyone whose circumstances do not fit a standard tier. The engagement is designed from a private consultation, whether that means a leaner focused programme built around one or two domains, a fully extended one covering travel, residences and household, or an international engagement delivered where you are. The investment follows the scope.</p>
         <ul>
           <li>Scope agreed first, price follows, never the reverse</li>
           <li>Focused single-domain work through to the full stack</li>
+          <li>International engagements by arrangement, delivered on site wherever you are based</li>
           <li>In-person cadence agreed around your calendar</li>
           <li>Coordination with your existing clinicians and trainers</li>
           <li>Limited to a small number of engagements per year</li>
@@ -782,7 +862,7 @@
       <div>
         <div class="g-title">Performance guarantee</div>
         <p>If, after twelve weeks, fewer than three of your five agreed markers have improved, the engagement continues at no additional cost until they do.</p>
-        <div class="g-note">Applies to Core, Premium, Family and Bespoke engagements.</div>
+        <div class="g-note">Applies to Core, Premium, Family and Bespoke engagements. The guarantee assumes the partnership works both ways: you run the protocol, and the results are held to account. Full terms are agreed at signing.</div>
       </div>
     </div>
   </div>
@@ -804,7 +884,7 @@
       </details>
       <details>
         <summary>Do you work with clients outside the UK? <span class="chev" aria-hidden="true"></span></summary>
-        <div class="ans">Yes for the self-guided product and Core, which run entirely by video and message. Premium includes in-person sessions, currently held in London.</div>
+        <div class="ans">Yes, at every level. The self-guided product and Core run entirely by video and message, wherever you are. Premium runs internationally too, with the weekly session held by video where distance makes in-person impractical. And where you want the work delivered in person at your location, international engagements are arranged through Bespoke, with travel scoped into the agreement.</div>
       </details>
       <details>
         <summary>Which wearables work? <span class="chev" aria-hidden="true"></span></summary>
@@ -812,7 +892,7 @@
       </details>
       <details>
         <summary>How much time does this take each week? <span class="chev" aria-hidden="true"></span></summary>
-        <div class="ans">A 30-minute weekly call, plus short daily inputs. The protocol is designed to reduce friction and fit your schedule, not to add a second job.</div>
+        <div class="ans">Be clear-eyed about this: the weekly session is 30 minutes, but the programme is not. The results come from what you do between the sessions, the training, the sleep and mealtime changes, the short daily logging, roughly 30 to 45 minutes on most days, much of it replacing things you already do rather than adding to them. The protocol is built to reduce friction and survive a heavy schedule, but it cannot run itself. Clients who treat the between-session work as the programme get the results.</div>
       </details>
       <details>
         <summary>Is this medical care? <span class="chev" aria-hidden="true"></span></summary>
